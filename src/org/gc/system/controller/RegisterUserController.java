@@ -45,8 +45,9 @@ public class RegisterUserController implements Initializable {
     @FXML
     public void onCreateUser(MouseEvent event) {
         boolean isValidEmail = validate.validateEmail(txtEmail.getText().trim());
-        if (isValidEmail == true) {
+        if (isValidEmail == false) {
             alertInfo.viewAlert("ERROR", "ERROR EMAIL", "ERROR DE CAMPO", "HAS INGRESADO UN EMAIL INCORRECTO");
+            return;
         }
 
         String user, name, lastName, email, password, confirmPassword;
