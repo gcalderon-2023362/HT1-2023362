@@ -1,40 +1,62 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.gc.system.utils;
 
-/**
- *
- * @author informatica
- */
 public class Validations {
 
     public Validations() {
-
     }
 
-    public Boolean equalsText(String textOriginal, String textCompare) {
-        return textOriginal.equals(textCompare);
-
-    }
-
-    public Boolean emptyText(String text) {
-        boolean isEmpty = true;
-
-        if (text.isEmpty() || text.isBlank()) {
-            isEmpty = true;
+    public boolean equalsText(String textOriginal, String textCompare) {
+        if (textOriginal == null || textCompare == null) {
+            return false;
         }
-
-        return isEmpty;
+        return textOriginal.equals(textCompare);
     }
 
-    public Boolean validareLengthText(String text, int lengthMax) {
+    public boolean emptyText(String text) {
+        // Si el texto es null, está vacío o solo contiene espacios, retornamos true (está vacío)
+        if (text == null || text.isEmpty() || text.isBlank()) {
+            return true;
+        }
+        // De lo contrario, retornamos false (NO está vacío)
+        return false;
+    }
+
+    public boolean validareLengthText(String text, int lengthMax) {
+        if (text == null) {
+            return false;
+        }
         return text.length() <= lengthMax;
     }
 
-    public Boolean validateEmail(String email){
+    public boolean validateEmail(String email) {
+        if (email == null || email.isEmpty()) {
+            return false;
+        }
+
+        int dotCount = 0;
+        int arrobeCount = 0;
+
+        // 1. Contamos cuántos '@' y '.' hay en total
+        for (int index = 0; index < email.length(); index++) {
+            char c = email.charAt(index);
+            
+            if (c == '.') {
+                dotCount++;
+            }
+            if (c == '@') {
+                arrobeCount++;
+            }
+        }
         
+        // 2. Un email válido debe tener EXACTAMENTE un '@' y al menos un '.'
+        if (arrobeCount != 1 || dotCount < 1) {
+            return false;
+        }
+        
+        // 3. Validación adicional: que no empiece o termine con '@'
+        int atIndex = email.indexOf('@');
+        if (atIndex == 0 || atIndex == email.length() - 1) {
+            return false;
+        }
+
         return true;
-    }
-}
