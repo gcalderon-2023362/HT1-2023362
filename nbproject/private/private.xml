@@ -3,20 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Descargas/auditoria-usuarios-productos/src/org/gc/system/utils/ViewFactory.java</file>
-            <file>file:/D:/Descargas/auditoria-usuarios-productos/src/org/gc/system/view/LoginView.fxml</file>
-            <file>file:/D:/Descargas/auditoria-usuarios-productos/src/org/gc/system/resources/style/LoginStyles.css</file>
-            <file>file:/D:/Descargas/auditoria-usuarios-productos/src/org/gc/system/ClasePrincipal.java</file>
-            <file>file:/D:/Descargas/auditoria-usuarios-productos/src/org/gc/system/resources/style/RegisterUserStyles.css</file>
-            <file>file:/D:/Descargas/auditoria-usuarios-productos/src/org/gc/system/controller/RegisterUserController.java</file>
-            <file>file:/D:/Descargas/auditoria-usuarios-productos/src/org/gc/system/config/ddl.sql</file>
-            <file>file:/D:/Descargas/auditoria-usuarios-productos/src/org/gc/system/view/RegisterView.fxml</file>
-            <file>file:/D:/Descargas/auditoria-usuarios-productos/src/org/gc/system/config/Enviroment.java</file>
-            <file>file:/D:/Descargas/auditoria-usuarios-productos/src/org/gc/system/config/ConexionDB.java</file>
-            <file>file:/D:/Descargas/auditoria-usuarios-productos/src/org/gc/system/utils/Validations.java</file>
-            <file>file:/D:/Descargas/auditoria-usuarios-productos/src/org/gc/system/model/User.java</file>
-            <file>file:/D:/Descargas/auditoria-usuarios-productos/src/org/gc/system/utils/SceneManager.java</file>
-            <file>file:/D:/Descargas/auditoria-usuarios-productos/src/org/gc/system/controller/LoginController.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/2023362/Bim%204/Semana%203/HT1-2023362/src/org/gc/system/service/UserStatus.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/2023362/Bim%204/Semana%203/HT1-2023362/src/org/gc/system/model/User.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/2023362/Bim%204/Semana%203/HT1-2023362/src/org/gc/system/repository/UserRepository.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/2023362/Bim%204/Semana%203/HT1-2023362/src/org/gc/system/repository/UserInterface.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/2023362/Bim%204/Semana%203/HT1-2023362/src/org/gc/system/utils/Validations.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/2023362/Bim%204/Semana%203/HT1-2023362/src/org/gc/system/controller/RegisterUserController.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/2023362/Bim%204/Semana%203/HT1-2023362/src/org/gc/system/config/ConexionDB.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/2023362/Bim%204/Semana%203/HT1-2023362/src/org/gc/system/ClasePrincipal.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/2023362/Bim%204/Semana%203/HT1-2023362/src/org/gc/system/utils/AlertInformation.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/2023362/Bim%204/Semana%203/HT1-2023362/src/org/gc/system/service/UserService.java</file>
         </group>
     </open-files>
 </project-private>

@@ -12,6 +12,6 @@ public class Enviroment {
     protected  static final String USER="IN4AM"; //tiene que ser el usuario de mi SQL
     protected static final String PASSWORD="@dmin4AM"; //tiene que ser la contraseña de mi SQL
     protected static final String DATA_BASE="auditoria_usuario_producto_in4am";
-    protected static final String LOCATION_SERVICE="localhots:3306";
+    protected static final String LOCATION_SERVICE="localhost:3306";
     
 }

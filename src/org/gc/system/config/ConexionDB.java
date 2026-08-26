@@ -1,21 +1,25 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
+* Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+
+* Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+
+*/
+
 package org.gc.system.config;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Connection;
 /**
- *
- * @author informatica
- */
+*
+*@author informatica
+*/
 public class ConexionDB {
-
     private static ConexionDB instanciaConexionDB;
     private Connection connection;
-
+ 
     private ConexionDB() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -30,9 +34,19 @@ public class ConexionDB {
         }
     }
 
-    public ConexionDB getInstanciaConexionDB(){
+    public static ConexionDB getInstanciaConexionDB(){
         if(instanciaConexionDB == null)
            instanciaConexionDB= new ConexionDB();
         return instanciaConexionDB;
     }
+
+    public Connection getConnection() {
+        return connection;
+    }
+ 
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
 }
+
+ 

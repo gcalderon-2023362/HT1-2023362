@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import org.gc.system.service.UserService;
+import org.gc.system.service.UserStatus;
 import org.gc.system.utils.AlertInformation;
 import org.gc.system.utils.Validations;
 import org.gc.system.utils.ViewFactory;
@@ -25,13 +27,13 @@ public class RegisterUserController implements Initializable {
     private PasswordField pwdPassword;
     @FXML
     private PasswordField pwdConfirmPassword;
-    
     private Validations validate = new Validations();
     private AlertInformation alertInfo = new AlertInformation();
+    private UserService userService = new UserService();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Inicialización si es necesaria
+
     }
 
     @FXML
@@ -42,41 +44,68 @@ public class RegisterUserController implements Initializable {
 
     @FXML
     public void onCreateUser(MouseEvent event) {
-        // 1. Obtener y limpiar los valores de los campos
-        String user = txtUser.getText().trim();
-        String name = txtName.getText().trim();
-        String lastName = txtLastName.getText().trim();
-        String email = txtEmail.getText().trim();
-        String password = pwdPassword.getText().trim();
-        String confirmPassword = pwdConfirmPassword.getText().trim();
-
-        // 2. Validar campos vacíos PRIMERO (es lo más básico)
-        if (validate.emptyText(user) || validate.emptyText(name) || 
-            validate.emptyText(lastName) || validate.emptyText(email) || 
-            validate.emptyText(password) || validate.emptyText(confirmPassword)) {
-            
-            alertInfo.viewAlert("ERROR", "CAMPOS VACÍOS", "Error de validación", "Por favor, complete todos los campos del formulario.");
-            return; // Detenemos la ejecución aquí para no seguir validando
+        boolean isValidEmail = validate.validateEmail(txtEmail.getText().trim());
+        if (isValidEmail == true) {
+            alertInfo.viewAlert("ERROR", "ERROR EMAIL", "ERROR DE CAMPO", "HAS INGRESADO UN EMAIL INCORRECTO");
         }
 
-        // 3. Validar el formato del email
-        // OJO: Si validateEmail devuelve FALSE, significa que es INCORRECTO
-        boolean isEmailValid = validate.validateEmail(email);
-        if (!isEmailValid) { 
-            alertInfo.viewAlert("ERROR", "EMAIL INVÁLIDO", "Error de validación", "Ha ingresado un formato de correo electrónico incorrecto.");
-            return; // Detenemos la ejecución aquí
-        }
+        String user, name, lastName, email, password, confirmPassword;
+        user = txtUser.getText().trim();
+        name = txtName.getText().trim();
+        lastName = txtLastName.getText().trim();
+        email = txtEmail.getText().trim();
+        password = pwdPassword.getText().trim();
+        confirmPassword = pwdConfirmPassword.getText().trim();
 
-        // 4. Validar que las contraseñas coincidan
-        if (!validate.equalsText(password, confirmPassword)) {
-            alertInfo.viewAlert("ERROR", "CONTRASEÑAS NO COINCIDEN", "Error de validación", "Las contraseñas ingresadas no son iguales.");
+        if (validate.emptyText(user) == true
+                || validate.emptyText(name) == true
+                || validate.emptyText(lastName) == true
+                || validate.emptyText(email) == true
+                || validate.emptyText(password) == true
+                || validate.emptyText(confirmPassword) == true) {
+
+            alertInfo.viewAlert("ERROR", "ERROR DE CAMPOS VACIOS", "ERROR DE CAMPO", "DEJO CAMPOS VACIOS DEL FORMULARIO");
+            return;
+
+        }
+        String msgField = "";
+        if (validate.validateLengthText(user, 25) == false) {
+            msgField = "El campo Usuario es mayor a 25 caracteres";
+        }
+        if (validate.validateLengthText(name, 50) == false) {
+            msgField = "El campo Nombres es mayor a 50 caracteres";
+        }
+        if (validate.validateLengthText(lastName, 50) == false) {
+            msgField = "El campo Apellido es mayor a 50 caracteres";
+        }
+        if (validate.validateLengthText(email, 50) == false) {
+            msgField = "El campo Email es mayor a 50 caracteres";
+        }
+        if (validate.validateLengthText(password, 35) == false) {
+            msgField = "$El campo Contraseña es mayyor a 35 caracteres";
+            return;
+        }
+        if (msgField.isEmpty() == false) {
+            alertInfo.viewAlert("ERROR", "ERROR DE CAMPO", "ERROR", msgField);
             return;
         }
 
-        // 5. Si todo está correcto, aquí iría la lógica para guardar el usuario en la base de datos
-        alertInfo.viewAlert("INFORMATION", "ÉXITO", "Registro exitoso", "El usuario se ha creado correctamente.");
-        
-        // Opcional: Redirigir al login después del éxito
-        // ViewFactory viewFacto = new ViewFactory();
-        // viewFacto.viewLogin();
+        if (validate.equalsText(password, confirmPassword) == false) {
+            alertInfo.viewAlert("ERROR", "ERROR DE CONTRASEÑA", "ERROR", "SUS CONTRASEÑAS NO COINCIDEN");
+            return;
+        }
+        UserStatus status
+                = userService.createUser(user, name, lastName, email, password);
+        switch (status) {
+            case UserStatus.ERROR_USER_CREATE ->
+                System.out.println("Error al crear en ctrl");
+            case UserStatus.USER_CREATED ->
+                System.out.println("Si se creo el usuario");
+            case UserStatus.FIELDS_EMPTY ->
+                System.out.println("Los campos no estan vacios");
+            case UserStatus.VALUE_LENGHT_INVALID ->
+                System.out.println("Error desconocido");
+        }
     }
+
+}

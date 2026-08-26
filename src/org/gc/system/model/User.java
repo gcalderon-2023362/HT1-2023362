@@ -8,7 +8,12 @@ package org.gc.system.model;
  *
  * @author informatica
  */
+
+
+
 public class User {
+    public User(){}
+    
     private String id_user;
     private String email;
     private String name;
@@ -63,5 +68,23 @@ public class User {
     public void setUser(String user) {
         this.user = user;
     }
+
+    public User(String id_user, String email, String name, String lastname, String password, String user) {
+        this.id_user = id_user;
+        this.email = email;
+        this.name = name;
+        this.lastname = lastname;
+        this.password = password;
+        this.user = user;
+    }
+
+    public User(String email, String name, String lastname, String password, String user) {
+        this.email = email;
+        this.name = name;
+        this.lastname = lastname;
+        this.password = password;
+        this.user = user;
+    }
+    
     
 }
